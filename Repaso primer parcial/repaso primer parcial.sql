@@ -16,6 +16,9 @@ insert into equipo(nombre)
 insert into equipo(nombre) 
 	values ('Independiente'), ("Racing"), ("Chacarita"), ("Aldosivi"), ("Alvarado");
     
+insert into equipo(nombre) 
+	values ('Gimnasia'), ("Huracan"), ("Almagro"), ("Talleres"), ("Belgrano");
+    
 select * from equipo;
 
 alter table jugador add constraint FK_id_equipo 
@@ -133,4 +136,8 @@ select distinct j.nombre from jugador j
 
 # delete from equipo where nombre = 'Canillitas' on cascade;
 
-alter table partido modify column id_partido int auto_increment
+alter table partido modify column id_partido int auto_increment;
+
+select * from jugador j left join equipo e on j.id_equipo = e.id_equipo
+union 
+select * from jugador j right join equipo e on j.id_equipo = e.id_equipo;
