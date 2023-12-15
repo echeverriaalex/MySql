@@ -52,15 +52,15 @@ create table if not exists recibo(
 delete from recibo;
 insert into recibo(legajo, fecha) 
 	values 	(1, '2021-1-4'), 
-			(null, '2021-2-4'), 
+			(2, '2024-12-4'), 
             (3, '2021-1-4'),
-			(null, '2021-1-18'),
+			(4, '2024-12-18'),
             (5, '2021-6-14'),
-            (null, '2021-1-18'),
+            (6, '2024-12-18'),
             (7, '2021-7-15'),
-            (null, '2021-2-2'),
+            (8, '2024-2-2'),
             (9, '2021-4-4'),
-            (null, '2021-2-15'),
+            (10, '2024-2-15'),
             (11, '2021-5-4'),
             (12, '2021-2-15'),
             (13, '2021-3-20'),
@@ -95,7 +95,7 @@ create procedure empSueldos(
     fechaF date
 )
 begin
-	select e.legajo, case when r.fecha between fechaI and FechaF then 'si'else  'no' end as Cobro_sueldo
+	select e.legajo, case when r.fecha between fechaI and FechaF then 'si' else 'no' end as Cobro_sueldo
 		from empleado e left join recibo r on r.legajo = e.legajo where r.fecha between fechaI and FechaF;
 end $$
 delimiter ;
