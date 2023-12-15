@@ -105,9 +105,17 @@ select * from suministra;
 
 # 3- Mostrar el nombre del proveedor, nombre de pieza y precio de todas la piezas. 
 # mostrar todos los proveedores, si no suministra piezas, mostrar en su lugar "sin piezas"
-select pro.nombre as "Proveedor", 
-	case when count(*) then concat(pi.nombre, su.precio) else "Sin piezas" end as "Suministra"
-	from suministra su right join proveedor pro on pro.id_proveedor = su.id_proveedor
+select pro.nombre as "Proveedor" , pi.nombre, su.precio,
+	case when count(*)>0 then concat("") 
+    else "Sin piezas" end as "Suministra"
+	from suministra su inner join proveedor pro on pro.id_proveedor = su.id_proveedor
+	inner join piezas pi on pi.codigo_pieza = su.codigo_pieza;
+    
+    
+select pro.nombre as "Proveedor" , pi.nombre, su.precio,
+	case when count(*)>0 then concat("")
+		 when count(*)>0 then "Sin piezas" end as "Suministra"
+	from proveedor pro left join suministra su on pro.id_proveedor = su.id_proveedor
 	left join piezas pi on pi.codigo_pieza = su.codigo_pieza;
     
     
